@@ -21,7 +21,7 @@ public:
     ~MainWindow();
 
 private:
-
+    void CheckIfDeployable();
 
 private slots:
     void on_OpenDeployDialogBtn_pressed();
