@@ -18,16 +18,42 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>30</y>
+      <y>10</y>
       <width>471</width>
-      <height>331</height>
+      <height>351</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QCommandLinkButton" name="commandLinkButton">
+      <widget class="QLineEdit" name="SourceText">
        <property name="text">
-        <string>CommandLinkButton</string>
+        <string>SOURCE PATH</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="DestinationPath">
+       <property name="text">
+        <string>DESTINATION PATH</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPlainTextEdit" name="LogsBox">
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+       <property name="plainText">
+        <string>LOGS
+.
+.
+.</string>
        </property>
       </widget>
      </item>
@@ -37,16 +63,22 @@
     <property name="geometry">
      <rect>
       <x>490</x>
-      <y>30</y>
+      <y>10</y>
       <width>181</width>
-      <height>331</height>
+      <height>101</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
      <item>
       <widget class="QPushButton" name="OpenSourceDialogBtn">
        <property name="text">
-        <string>PushButton</string>
+        <string>Source</string>
        </property>
        <property name="flat">
         <bool>false</bool>
@@ -56,14 +88,20 @@
      <item>
       <widget class="QPushButton" name="OpenDestDialogBtn">
        <property name="text">
-        <string>PushButton</string>
+        <string>Destination</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="OpenDeployDialogBtn">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Deploy!</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -79,6 +117,18 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
