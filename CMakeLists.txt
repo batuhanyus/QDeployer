@@ -22,6 +22,7 @@ set(PROJECT_SOURCES
         DeploymentJob.h
         DeploymentJob.cpp
         DeploymentOptions.h
+        Logger.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

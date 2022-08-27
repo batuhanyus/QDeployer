@@ -1,22 +1,42 @@
 #include "DeploymentJob.h"
 
+#include <QMessageBox>
+#include <QProcess>
+
 DeploymentJob::DeploymentJob(QObject *parent)
     : QObject{parent}
 {
 
 }
 
-void DeploymentJob::Prepare(QString Source, QString Destination)
+void DeploymentJob::Deploy(DeploymentOptions* Options)
 {
-    //Set paths.
-    SourcePath=Source;
-    DestinationPath=Destination;
+    QMessageBox Box;
+    Box.setText(Options->SourcePath);
+    //Box.exec();
 
-    //TODO:Digest deployment options.
+    if(!Options)
+    {
+       //TODO: Add log here.
+        return;
+    }
+    else if(Options->SourcePath.isEmpty() || Options->SourcePath.isEmpty())
+    {
+        return;
+    }
 
-}
+    QStringList Arguments;
 
-void DeploymentJob::Deploy()
-{
+    Arguments.append("--release");
+    Arguments.append("--no-translations");
+    //Arguments.append("--no-libraries");
+    //Arguments.append("--verbose");
+    Arguments.append(Options->SourcePath);
 
+
+    QProcess* Process = new QProcess(this);
+    QString ProcessPath="D:/Qt/6.3.1/msvc2019_64/bin/windeployqt.exe";
+
+    Process->startDetached(ProcessPath,Arguments);
+    delete Process;
 }

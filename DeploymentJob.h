@@ -1,6 +1,8 @@
 #ifndef DEPLOYMENTJOB_H
 #define DEPLOYMENTJOB_H
 
+#include "DeploymentOptions.h"
+
 #include <QObject>
 #include <stdlib.h>
 
@@ -12,12 +14,10 @@ class DeploymentJob : public QObject
 public:
     explicit DeploymentJob(QObject *parent = nullptr);
 
-    void Prepare(QString Source,QString Destination);
-    void Deploy();
+    void Deploy(DeploymentOptions* Options);
 
 private:
-    QString SourcePath;
-    QString DestinationPath;
+
 
 signals:
 
