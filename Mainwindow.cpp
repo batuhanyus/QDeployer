@@ -27,7 +27,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::CheckIfDeployable()
 {
-    if(!Options->SourcePath.isEmpty() || !Options->DestinationPath.isEmpty())
+    if(!Options->SourcePath.isEmpty() && !Options->DestinationPath.isEmpty())
         ui->OpenDeployDialogBtn->setEnabled(true);
     else
         ui->OpenDeployDialogBtn->setEnabled(false);
