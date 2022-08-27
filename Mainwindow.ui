@@ -35,7 +35,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="DestinationPath">
+      <widget class="QLineEdit" name="DestinationText">
        <property name="text">
         <string>DESTINATION PATH</string>
        </property>

@@ -22,6 +22,7 @@ public:
 
 private:
     void CheckIfDeployable();
+    void UpdateInfoTexts();
 
 private slots:
     void on_OpenDeployDialogBtn_pressed();
