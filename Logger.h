@@ -1,11 +1,11 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
-#include "qmessagebox.h"
+#include "Mainwindow.h"
 
 static void AddLog(QString Log)
 {
-
+    Ui::MainWindow
 }
 
 int Sayi;

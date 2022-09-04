@@ -1,7 +1,9 @@
 #include "DeploymentJob.h"
 
+#include <QDir>
 #include <QMessageBox>
 #include <QProcess>
+#include <QString>
 
 DeploymentJob::DeploymentJob(QObject *parent)
     : QObject{parent}
@@ -11,10 +13,6 @@ DeploymentJob::DeploymentJob(QObject *parent)
 
 void DeploymentJob::Deploy(DeploymentOptions* Options)
 {
-    QMessageBox Box;
-    Box.setText(Options->SourcePath);
-    //Box.exec();
-
     if(!Options)
     {
        //TODO: Add log here.
@@ -29,14 +27,42 @@ void DeploymentJob::Deploy(DeploymentOptions* Options)
 
     Arguments.append("--release");
     Arguments.append("--no-translations");
-    //Arguments.append("--no-libraries");
-    //Arguments.append("--verbose");
     Arguments.append(Options->SourcePath);
-
 
     QProcess* Process = new QProcess(this);
     QString ProcessPath="D:/Qt/6.3.1/msvc2019_64/bin/windeployqt.exe";
 
-    Process->startDetached(ProcessPath,Arguments);
+    Process->execute(ProcessPath,Arguments);
+    Move(Options);
+    CleanUp(Options);
+
     delete Process;
+}
+
+void DeploymentJob::Move(DeploymentOptions *Options)
+{
+    QDir SourceDir=QDir(Options->SourcePath);
+
+    QList <QFileInfo> FileList= SourceDir.entryInfoList();
+
+    QMessageBox Box;
+    Box.setText(QString("Found %1 filelist entries.").arg(FileList.length()));
+    Box.exec();
+
+    for(int i=0;i<FileList.length();i++)
+    {
+
+        Box.setText(FileList[i].absoluteFilePath());
+        Box.exec();
+
+    }
+
+    SourceDir.rename(Options->SourcePath,Options->DestinationPath);
+
+    //QDir::rename(Options->SourcePath,Options->DestinationPath);
+}
+
+void DeploymentJob::CleanUp(DeploymentOptions *Options)
+{
+
 }

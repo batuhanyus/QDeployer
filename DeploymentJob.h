@@ -18,8 +18,8 @@ public:
 
 private:
 
-
-signals:
+    void Move(DeploymentOptions* Options);
+    void CleanUp(DeploymentOptions* Options);
 
 };
 
